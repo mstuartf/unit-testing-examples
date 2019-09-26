@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {LoggerService} from '../logger-svc/logger.service';
 
 @Component({
   selector: 'app-input-log',
@@ -7,14 +8,16 @@ import { Component } from '@angular/core';
 })
 export class InputLogComponent {
 
+  constructor(public loggerSvc: LoggerService) {}
+
   public logType(raw: string): void {
     const value = parseInt(raw, 10);
     if (value > 0) {
-      console.log('positive');
+      this.loggerSvc.logPositive();
     } else if (value < 0) {
-      console.log('negative');
+      this.loggerSvc.logNegative();
     } else {
-      console.log('zero');
+      this.loggerSvc.logZero();
     }
   }
 
