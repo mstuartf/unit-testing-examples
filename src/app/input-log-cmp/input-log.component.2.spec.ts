@@ -3,9 +3,9 @@ import {InputLogComponent} from './input-log.component';
 import {DebugElement} from '@angular/core';
 import {By} from '@angular/platform-browser';
 import {LoggerService} from '../logger-svc/logger.service';
-import {ValueDisplayComponent} from '../value-display/value-display.component';
+import {ResetBtnComponent} from '../reset-btn-cmp/reset-btn.component';
 
-describe('2', () => {  // 28.697 secs
+describe('2', () => {
 
   for (let i = 0; i < 1000; i++) {
 
@@ -19,7 +19,7 @@ describe('2', () => {  // 28.697 secs
         TestBed.configureTestingModule({
           declarations: [
             InputLogComponent,
-            ValueDisplayComponent
+            ResetBtnComponent
           ],
           providers: [LoggerService]
         })
@@ -40,12 +40,13 @@ describe('2', () => {  // 28.697 secs
         expect(cmp.logType).toHaveBeenCalledWith('1');
       });
 
-      it('should pass the input value to the display component', () => {
+      it('should reset the input value when the reset btn component emits \'reset\'', () => {
         input.nativeElement.value = '-1';
         fixture.detectChanges();
-        const childCmp = fixture.debugElement.query(By.directive(ValueDisplayComponent));
-        expect(childCmp).toBeTruthy();
-        expect(childCmp.componentInstance.inputValue).toEqual('-1');
+        const childCmp = fixture.debugElement.query(By.directive(ResetBtnComponent));
+        childCmp.triggerEventHandler('reset', {});
+        fixture.detectChanges();
+        expect(input.nativeElement.value).toBe('');
       });
 
     });

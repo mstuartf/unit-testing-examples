@@ -1,5 +1,5 @@
 <label>
   Enter value:
   <input #box type="number" (keyup)="logType(box.value)">
-  <app-value-display [inputValue]="box.value"></app-value-display>
+  <app-reset-btn (reset)="box.value = ''"></app-reset-btn>
 </label>
