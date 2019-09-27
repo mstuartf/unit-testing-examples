@@ -5,9 +5,9 @@ import {By} from '@angular/platform-browser';
 import {LoggerService} from '../logger-svc/logger.service';
 import {ValueDisplayComponent} from '../value-display/value-display.component';
 
-describe('3', () => {  // 25.241 secs // 11.485
+describe('3', () => {  // 25.241 secs
 
-  for (let i = 0; i < 500; i++) {
+  for (let i = 0; i < 1000; i++) {
 
     describe('InputLogComponent (shallow)', () => {
 
@@ -31,7 +31,7 @@ describe('3', () => {  // 25.241 secs // 11.485
         input = fixture.debugElement.query(By.css('input'));
       });
 
-      it('should log \'positive\' when the user inputs \'1\'', () => {
+      it('should trigger logType on \'keyup\' with the input value', () => {
         spyOn(cmp, 'logType');
         input.nativeElement.value = '1';
         input.triggerEventHandler('keyup', null);
