@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {LoggerService} from '../logger-svc/logger.service';
+import {LoggerService} from '../logger.service';
 
 @Component({
   selector: 'app-input-log',

@@ -2,12 +2,12 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {InputLogComponent} from './input-log.component';
 import {DebugElement, NO_ERRORS_SCHEMA} from '@angular/core';
 import {By} from '@angular/platform-browser';
-import {LoggerService} from '../logger-svc/logger.service';
-import {ResetBtnComponent} from '../reset-btn-cmp/reset-btn.component';
+import {LoggerService} from '../logger.service';
+import {ResetBtnComponent} from '../reset-btn/reset-btn.component';
 
-describe('4', () => {
+describe('4', () => {  // 12.638 secs
 
-  for (let i = 0; i < 1000; i++) {
+  for (let i = 0; i < 500; i++) {
 
     describe('InputLogComponent (shallow)', () => {
 

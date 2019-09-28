@@ -2,14 +2,14 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {InputLogComponent} from './input-log.component';
 import {DebugElement} from '@angular/core';
 import {By} from '@angular/platform-browser';
-import {LoggerService} from '../logger-svc/logger.service';
-import {ResetBtnComponent} from '../reset-btn-cmp/reset-btn.component';
+import {LoggerService} from '../logger.service';
+import {ResetBtnComponent} from '../reset-btn/reset-btn.component';
 
-describe('2', () => {
+describe('1', () => {  // 24.12 secs
 
-  for (let i = 0; i < 1000; i++) {
+  for (let i = 0; i < 500; i++) {
 
-    describe('InputLogComponent (template)', () => {
+    describe('InputLogComponent', () => {
 
       let cmp: InputLogComponent;
       let fixture: ComponentFixture<InputLogComponent>;
@@ -33,11 +33,25 @@ describe('2', () => {
         input = fixture.debugElement.query(By.css('input'));
       });
 
-      it('should trigger logType on \'keyup\' with the input value', () => {
-        spyOn(cmp, 'logType');
+      it('should call \'logPositive\' when the user inputs \'1\'', () => {
+        spyOn(cmp.loggerSvc, 'logPositive');
         input.nativeElement.value = '1';
         input.triggerEventHandler('keyup', null);
-        expect(cmp.logType).toHaveBeenCalledWith('1');
+        expect(cmp.loggerSvc.logPositive).toHaveBeenCalled();
+      });
+
+      it('should call \'logNegative\' when the user inputs \'-1\'', () => {
+        spyOn(cmp.loggerSvc, 'logNegative');
+        input.nativeElement.value = '-1';
+        input.triggerEventHandler('keyup', null);
+        expect(cmp.loggerSvc.logNegative).toHaveBeenCalled();
+      });
+
+      it('should call \'logZero\' when the user inputs \'0\'', () => {
+        spyOn(cmp.loggerSvc, 'logZero');
+        input.nativeElement.value = '0';
+        input.triggerEventHandler('keyup', null);
+        expect(cmp.loggerSvc.logZero).toHaveBeenCalled();
       });
 
       it('should reset the input value when the reset btn component emits \'reset\'', () => {
@@ -47,34 +61,6 @@ describe('2', () => {
         childCmp.triggerEventHandler('reset', {});
         fixture.detectChanges();
         expect(input.nativeElement.value).toBe('');
-      });
-
-    });
-
-    describe('InputLogComponent (no template)', () => {
-
-      let cmp: InputLogComponent;
-
-      beforeEach(() => {
-        cmp = new InputLogComponent(new LoggerService());
-      });
-
-      it('should call \'logPositive\' when the user inputs \'1\'', () => {
-        spyOn(cmp.loggerSvc, 'logPositive');
-        cmp.logType('1');
-        expect(cmp.loggerSvc.logPositive).toHaveBeenCalled();
-      });
-
-      it('should call \'logNegative\' when the user inputs \'-1\'', () => {
-        spyOn(cmp.loggerSvc, 'logNegative');
-        cmp.logType('-1');
-        expect(cmp.loggerSvc.logNegative).toHaveBeenCalled();
-      });
-
-      it('should call \'logZero\' when the user inputs \'0\'', () => {
-        spyOn(cmp.loggerSvc, 'logZero');
-        cmp.logType('0');
-        expect(cmp.loggerSvc.logZero).toHaveBeenCalled();
       });
 
     });

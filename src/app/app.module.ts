@@ -2,9 +2,9 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {InputLogComponent} from './input-log-cmp/input-log.component';
-import {LoggerService} from './logger-svc/logger.service';
-import {ResetBtnComponent} from './reset-btn-cmp/reset-btn.component';
+import {InputLogComponent} from './input-log/input-log.component';
+import {LoggerService} from './logger.service';
+import {ResetBtnComponent} from './reset-btn/reset-btn.component';
 
 @NgModule({
   declarations: [
