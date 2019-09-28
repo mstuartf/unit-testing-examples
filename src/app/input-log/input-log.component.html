@@ -3,3 +3,4 @@
   <input #box type="number" (keyup)="logType(box.value)">
   <app-reset-btn (reset)="box.value = ''"></app-reset-btn>
 </label>
+<p [ngStyle]="{'color': box.value > 0 ? 'green' : 'red'}">{{box.value || 0}}</p>
